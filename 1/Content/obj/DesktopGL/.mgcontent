@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>c:/Users/erdem/Desktop/Parkour/1/Content/Audio/Ses.wav</File>
+    <File>c:/Users/erdem/Desktop/Parkour/1/Content/fonts/04B_30.spritefont</File>
+    <File>c:/Users/erdem/Desktop/Parkour/1/Content/images/asiri basit karakter.png</File>
+    <File>c:/Users/erdem/Desktop/Parkour/1/Content/images/Blok.png</File>
+    <File>c:/Users/erdem/Desktop/Parkour/1/Content/images/logo.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
