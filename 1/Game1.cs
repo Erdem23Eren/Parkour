@@ -59,21 +59,20 @@ public class Game1 : Game
     }
 
     protected override void Update(GameTime gameTime)
-    {
-        if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
+{
+    if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+        Exit();
 
-        float groundY = _graphics.PreferredBackBufferHeight - (_blockTexture.Height * GlobalScale);
-        _player.Update(gameTime, groundY);
+   
+    float groundY = 600;
 
-        float cameraX = -_player.Position.X + (GraphicsDevice.Viewport.Width / 2f);
-        _cameraTransform = Matrix.CreateTranslation(cameraX, 0, 0);
+    _player.Update(gameTime, groundY);
 
-        if (Keyboard.GetState().IsKeyDown(Keys.D))
-            _score += 1;
+    float cameraX = -_player.Position.X + (GraphicsDevice.Viewport.Width / 2f);
+    _cameraTransform = Matrix.CreateTranslation(cameraX, 0, 0);
 
-        base.Update(gameTime);
-    }
+    base.Update(gameTime);
+}
 
     protected override void Draw(GameTime gameTime)
     {
