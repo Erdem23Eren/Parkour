@@ -1,2 +1,9 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"c:/Users/erdem/Desktop/Parkour/1/Content/fonts/04B_30.spritefont","c:/Users/erdem/Desktop/Parkour/1/Content/bin/DesktopGL/fonts/04B_30.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21529,0,1051471
+"c:/Users/erdem/Desktop/Parkour/1/Content/images/character_sheet1.png","c:/Users/erdem/Desktop/Parkour/1/Content/bin/DesktopGL/images/1.xnb","TextureProcessor","Texture2DContent",655,36949,0,0724399
+"c:/Users/erdem/Desktop/Parkour/1/Content/images/character_sheet13.png","c:/Users/erdem/Desktop/Parkour/1/Content/bin/DesktopGL/images/13.xnb","TextureProcessor","Texture2DContent",634,36949,0,0065924
+"c:/Users/erdem/Desktop/Parkour/1/Content/images/character_sheet14.png","c:/Users/erdem/Desktop/Parkour/1/Content/bin/DesktopGL/images/14.xnb","TextureProcessor","Texture2DContent",631,36949,0,0026555
+"c:/Users/erdem/Desktop/Parkour/1/Content/images/character_sheet17.png","c:/Users/erdem/Desktop/Parkour/1/Content/bin/DesktopGL/images/17.xnb","TextureProcessor","Texture2DContent",618,36949,0,0023012
+"c:/Users/erdem/Desktop/Parkour/1/Content/images/character_sheet18.png","c:/Users/erdem/Desktop/Parkour/1/Content/bin/DesktopGL/images/18.xnb","TextureProcessor","Texture2DContent",645,36949,0,0020744
+"c:/Users/erdem/Desktop/Parkour/1/Content/images/character_sheet19.png","c:/Users/erdem/Desktop/Parkour/1/Content/bin/DesktopGL/images/19.xnb","TextureProcessor","Texture2DContent",655,36949,0,0017681
+"c:/Users/erdem/Desktop/Parkour/1/Content/images/character_sheet2.png","c:/Users/erdem/Desktop/Parkour/1/Content/bin/DesktopGL/images/2.xnb","TextureProcessor","Texture2DContent",655,36949,0,0019797
+"c:/Users/erdem/Desktop/Parkour/1/Content/images/character_sheet3.png","c:/Users/erdem/Desktop/Parkour/1/Content/bin/DesktopGL/images/3.xnb","TextureProcessor","Texture2DContent",633,36949,0,0021792

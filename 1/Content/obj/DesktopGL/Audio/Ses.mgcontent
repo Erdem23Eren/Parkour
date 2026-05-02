@@ -3,7 +3,7 @@
   <SourceFile>c:/Users/erdem/Desktop/Parkour/1/Content/Audio/Ses.wav</SourceFile>
   <SourceTime>2026-03-27T10:39:49.0249239+03:00</SourceTime>
   <DestFile>c:/Users/erdem/Desktop/Parkour/1/Content/bin/DesktopGL/Audio/Ses.xnb</DestFile>
-  <DestTime>2026-04-19T23:47:29.5660051+03:00</DestTime>
+  <DestTime>2026-05-02T14:46:29.5391895+03:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2025-10-20T17:25:32+03:00</ImporterTime>
   <Processor>SongProcessor</Processor>
