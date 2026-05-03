@@ -19,6 +19,7 @@ public class Game1 : Game
     private Texture2D _blockTexture;
     private Player _player;
     private Song _backgroundMusic;
+    private bool _hasWon = false; 
 
     private const float GlobalScale = 0.1f;
 
@@ -59,20 +60,33 @@ public class Game1 : Game
     }
 
     protected override void Update(GameTime gameTime)
-{
-    if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-        Exit();
+    {
+        if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            Exit();
 
-   
-    float groundY = 600;
+       
+        if (_hasWon) return;
 
-    _player.Update(gameTime, groundY);
+        float groundY = 600;
+        _player.Update(gameTime, groundY);
 
-    float cameraX = -_player.Position.X + (GraphicsDevice.Viewport.Width / 2f);
-    _cameraTransform = Matrix.CreateTranslation(cameraX, 0, 0);
+        
+        if (Keyboard.GetState().IsKeyDown(Keys.D) || Keyboard.GetState().IsKeyDown(Keys.A))
+        {
+            _score += 1;
+        }
 
-    base.Update(gameTime);
-}
+       
+        if (_score >= 250)
+        {
+            _hasWon = true;
+        }
+
+        float cameraX = -_player.Position.X + (GraphicsDevice.Viewport.Width / 2f);
+        _cameraTransform = Matrix.CreateTranslation(cameraX, 0, 0);
+
+        base.Update(gameTime);
+    }
 
     protected override void Draw(GameTime gameTime)
     {
@@ -81,6 +95,8 @@ public class Game1 : Game
         _spriteBatch.Begin(transformMatrix: _cameraTransform);
 
         float scaledWidth = _blockTexture.Width * GlobalScale;
+        
+        
         float groundY = _graphics.PreferredBackBufferHeight - (_blockTexture.Height * GlobalScale);
 
         for (float x = -1000; x < 10000; x += scaledWidth)
@@ -92,8 +108,22 @@ public class Game1 : Game
 
         _spriteBatch.End();
 
+       
         _spriteBatch.Begin(); 
+        
+        
         _spriteBatch.DrawString(_font, $"Score: {_score}", _scorePosition, Color.White);
+
+        
+        if (_hasWon)
+        {
+            string winMessage = "WIN!";
+            Vector2 messageSize = _font.MeasureString(winMessage);
+            Vector2 screenCenter = new Vector2(GraphicsDevice.Viewport.Width / 2f, GraphicsDevice.Viewport.Height / 2f);
+            
+            _spriteBatch.DrawString(_font, winMessage, screenCenter - (messageSize / 2f), Color.Yellow);
+        }
+
         _spriteBatch.End();
 
         base.Draw(gameTime);
