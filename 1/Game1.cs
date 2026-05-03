@@ -35,29 +35,41 @@ public class Game1 : Game
         base.Initialize();
     }
 
-    protected override void LoadContent()
+   
+protected override void LoadContent()
+{
+    _spriteBatch = new SpriteBatch(GraphicsDevice);
+    _blockTexture = Content.Load<Texture2D>("images/blok");
+    _font = Content.Load<SpriteFont>("fonts/04B_30");
+    _backgroundMusic = Content.Load<Song>("Audio/Ses");
+
+    Texture2D idleTexture = Content.Load<Texture2D>("images/1");
+
+   
+    List<Texture2D> walkFrames = new List<Texture2D> 
     {
-        _spriteBatch = new SpriteBatch(GraphicsDevice);
+        Content.Load<Texture2D>("images/13"),
+        Content.Load<Texture2D>("images/14"),
+        Content.Load<Texture2D>("images/17"),
+        Content.Load<Texture2D>("images/18"),
+        Content.Load<Texture2D>("images/19")
+    };
 
-        _blockTexture = Content.Load<Texture2D>("images/blok");
-        _font = Content.Load<SpriteFont>("fonts/04B_30");
-        _backgroundMusic = Content.Load<Song>("Audio/Ses");
+  
+    List<Texture2D> jumpFrames = new List<Texture2D> 
+    {
+        Content.Load<Texture2D>("images/31"),
+        Content.Load<Texture2D>("images/32"),
+        Content.Load<Texture2D>("images/33"),
+        Content.Load<Texture2D>("images/34")
+    };
 
-        Texture2D idleTexture = Content.Load<Texture2D>("images/1");
+   
+    _player = new Player(idleTexture, walkFrames, jumpFrames, new Vector2(100, 100));
 
-        List<Texture2D> walkFrames = new List<Texture2D>();
-        walkFrames.Add(Content.Load<Texture2D>("images/13"));
-        walkFrames.Add(Content.Load<Texture2D>("images/14"));
-        walkFrames.Add(Content.Load<Texture2D>("images/17"));
-        walkFrames.Add(Content.Load<Texture2D>("images/18"));
-        walkFrames.Add(Content.Load<Texture2D>("images/19"));
-
-        _player = new Player(idleTexture, walkFrames, new Vector2(100, 100));
-
-        MediaPlayer.Play(_backgroundMusic);
-        MediaPlayer.IsRepeating = true;
-        MediaPlayer.Volume = 0.5f;
-    }
+    MediaPlayer.Play(_backgroundMusic);
+    MediaPlayer.IsRepeating = true;
+}
 
     protected override void Update(GameTime gameTime)
     {
@@ -77,7 +89,7 @@ public class Game1 : Game
         }
 
        
-        if (_score >= 250)
+        if (_score >= 2500)
         {
             _hasWon = true;
         }

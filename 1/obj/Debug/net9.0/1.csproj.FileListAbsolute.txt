@@ -83,3 +83,7 @@ c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\images\18.xnb
 c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\images\19.xnb
 c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\images\2.xnb
 c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\images\3.xnb
+c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\images\31.xnb
+c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\images\32.xnb
+c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\images\33.xnb
+c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\images\34.xnb
