@@ -11,7 +11,6 @@ public class Menu
     private string[] _options = { "START", "EXIT" };
     private int _selectedIndex = 0;
     private KeyboardState _previousState;
-
     public Menu(SpriteFont font, Viewport viewport)
     {
         _font = font;
