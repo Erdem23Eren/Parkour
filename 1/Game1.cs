@@ -78,7 +78,7 @@ public class Game1 : Game
 
         _player = new Player(idleTexture, walkFrames, jumpFrames, attack, _jumpSound, _attackSound, new Vector2(100, 100));
 
-        // Menü nesnesini oluştur
+       
         _mainMenu = new Menu(_font, GraphicsDevice.Viewport);
 
         MediaPlayer.Play(_backgroundMusic);
@@ -90,7 +90,7 @@ public class Game1 : Game
         if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        // Menü mü Oyun mu kontrolü
+      
         if (_currentState == GameState.MainMenu)
         {
             int menuResult = _mainMenu.Update();
