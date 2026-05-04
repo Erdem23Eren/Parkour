@@ -13,11 +13,23 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Audio/kilic.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/kilic.mp3
+
 #begin Audio/Ses.wav
 /importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Audio/Ses.wav
+
+#begin Audio/zipla.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/zipla.mp3
 
 #begin fonts/04B_30.spritefont
 /importer:FontDescriptionImporter
@@ -432,7 +444,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:images/character_sheet65.png
+/build:images/character_sheet65.png;images/65.png
 
 #begin images/character_sheet71.png
 /importer:TextureImporter
@@ -444,7 +456,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:images/character_sheet71.png
+/build:images/character_sheet71.png;images/71.png
 
 #begin images/character_sheet72.png
 /importer:TextureImporter
@@ -456,7 +468,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:images/character_sheet72.png
+/build:images/character_sheet72.png;images/72.png
 
 #begin images/character_sheet73.png
 /importer:TextureImporter
@@ -468,7 +480,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:images/character_sheet73.png
+/build:images/character_sheet73.png;images/73.png
 
 #begin images/character_sheet74.png
 /importer:TextureImporter
@@ -480,7 +492,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:images/character_sheet74.png
+/build:images/character_sheet74.png;images/74.png
 
 #begin images/character_sheet75.png
 /importer:TextureImporter
@@ -492,7 +504,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:images/character_sheet75.png
+/build:images/character_sheet75.png;images/75.png
 
 #begin images/logo.png
 /importer:TextureImporter

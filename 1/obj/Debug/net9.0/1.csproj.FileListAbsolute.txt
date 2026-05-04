@@ -87,3 +87,13 @@ c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\images\31.xnb
 c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\images\32.xnb
 c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\images\33.xnb
 c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\images\34.xnb
+c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\images\65.xnb
+c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\images\71.xnb
+c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\images\72.xnb
+c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\images\73.xnb
+c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\images\74.xnb
+c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\images\75.xnb
+c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\Audio\kilic.ogg
+c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\Audio\kilic.xnb
+c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\Audio\zipla.ogg
+c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\Audio\zipla.xnb

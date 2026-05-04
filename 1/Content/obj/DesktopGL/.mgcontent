@@ -4,7 +4,9 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>c:/Users/erdem/Desktop/Parkour/1/Content/Audio/kilic.mp3</File>
     <File>c:/Users/erdem/Desktop/Parkour/1/Content/Audio/Ses.wav</File>
+    <File>c:/Users/erdem/Desktop/Parkour/1/Content/Audio/zipla.mp3</File>
     <File>c:/Users/erdem/Desktop/Parkour/1/Content/fonts/04B_30.spritefont</File>
     <File>c:/Users/erdem/Desktop/Parkour/1/Content/images/asiri basit karakter.png</File>
     <File>c:/Users/erdem/Desktop/Parkour/1/Content/images/Blok.png</File>
@@ -52,6 +54,8 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File>images/1.png</File>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
@@ -83,12 +87,12 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
+    <File>images/65.png</File>
+    <File>images/71.png</File>
+    <File>images/72.png</File>
+    <File>images/73.png</File>
+    <File>images/74.png</File>
+    <File>images/75.png</File>
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

@@ -1,5 +1,3 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"c:/Users/erdem/Desktop/Parkour/1/Content/images/character_sheet31.png","c:/Users/erdem/Desktop/Parkour/1/Content/bin/DesktopGL/images/31.xnb","TextureProcessor","Texture2DContent",711,36949,0,09793
-"c:/Users/erdem/Desktop/Parkour/1/Content/images/character_sheet32.png","c:/Users/erdem/Desktop/Parkour/1/Content/bin/DesktopGL/images/32.xnb","TextureProcessor","Texture2DContent",718,36949,0,0061579
-"c:/Users/erdem/Desktop/Parkour/1/Content/images/character_sheet33.png","c:/Users/erdem/Desktop/Parkour/1/Content/bin/DesktopGL/images/33.xnb","TextureProcessor","Texture2DContent",672,36949,0,0029091
-"c:/Users/erdem/Desktop/Parkour/1/Content/images/character_sheet34.png","c:/Users/erdem/Desktop/Parkour/1/Content/bin/DesktopGL/images/34.xnb","TextureProcessor","Texture2DContent",674,36949,0,0031073
+"c:/Users/erdem/Desktop/Parkour/1/Content/Audio/kilic.mp3","c:/Users/erdem/Desktop/Parkour/1/Content/bin/DesktopGL/Audio/kilic.xnb","SoundEffectProcessor","SoundEffectContent",86643,364137,0,1542737
+"c:/Users/erdem/Desktop/Parkour/1/Content/Audio/zipla.mp3","c:/Users/erdem/Desktop/Parkour/1/Content/bin/DesktopGL/Audio/zipla.xnb","SoundEffectProcessor","SoundEffectContent",69888,419433,0,0996732
