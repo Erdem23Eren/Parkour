@@ -25,7 +25,7 @@ public class Game1 : Game
     private bool _hasWon = false;
     private const float GlobalScale = 0.1f;
 
-    // Menü için eklenenler
+   
     private Menu _mainMenu;
     private GameState _currentState = GameState.MainMenu;
 
