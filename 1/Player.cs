@@ -60,7 +60,7 @@ public class Player
 
             if (kState.IsKeyDown(Keys.W) && !_isJumping) 
             { 
-                _velocity.Y = -14f; 
+                _velocity.Y = -20f; 
                 _isJumping = true; 
                 _currentFrameIndex = 0;
                 _jumpSound.Play();

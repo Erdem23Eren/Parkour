@@ -84,12 +84,13 @@ public class Game1 : Game
             {
                 float pw = _platTexture.Width * _platScale;
                 
-                if (_player.Position.X > plat.X - 10 && _player.Position.X < plat.X + pw + 10)
+                if (_player.Position.X > plat.X - 20 && _player.Position.X < plat.X + pw + 20)
                 {
                     
-                    if (_player.Velocity.Y >= 0 && _player.Position.Y <= plat.Y + 40 && _player.Position.Y > plat.Y - 20)
+                    if (_player.Velocity.Y >= 0 && _player.Position.Y <= plat.Y + 200 && _player.Position.Y > plat.Y - 50)
                     {
-                        targetY = plat.Y + 30; 
+                        System.Diagnostics.Debug.WriteLine($"Platform Y: {plat.Y} - Karakter Y: {_player.Position.Y}");
+                        targetY = plat.Y + (800 - 635); 
                         break;
                     }
                 }
