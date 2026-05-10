@@ -56,7 +56,6 @@ public class Game1 : Game
         List<Texture2D> jump = new List<Texture2D> { Content.Load<Texture2D>("images/31"), Content.Load<Texture2D>("images/32"), Content.Load<Texture2D>("images/33"), Content.Load<Texture2D>("images/34") };
         List<Texture2D> atk = new List<Texture2D> { Content.Load<Texture2D>("images/71"), Content.Load<Texture2D>("images/65"), Content.Load<Texture2D>("images/72"), Content.Load<Texture2D>("images/73"), Content.Load<Texture2D>("images/74"), Content.Load<Texture2D>("images/75") };
 
-        
         _player = new Player(idle, walk, jump, atk, _jumpSound, _attackSound, new Vector2(100, 630));
         _mainMenu = new Menu(_font, GraphicsDevice.Viewport);
 
@@ -77,7 +76,6 @@ public class Game1 : Game
         {
             if (_hasWon) return;
 
-            
             float targetY = 800; 
 
             foreach (var plat in _platforms)
@@ -86,7 +84,6 @@ public class Game1 : Game
                 
                 if (_player.Position.X > plat.X - 20 && _player.Position.X < plat.X + pw + 20)
                 {
-                    
                     if (_player.Velocity.Y >= 0 && _player.Position.Y <= plat.Y + 200 && _player.Position.Y > plat.Y - 50)
                     {
                         System.Diagnostics.Debug.WriteLine($"Platform Y: {plat.Y} - Karakter Y: {_player.Position.Y}");
@@ -99,6 +96,14 @@ public class Game1 : Game
             _player.Update(gameTime, targetY);
             
             if (Keyboard.GetState().IsKeyDown(Keys.D) || Keyboard.GetState().IsKeyDown(Keys.A)) _score++;
+
+           
+            if (_score >= 1000)
+            {
+                _hasWon = true;
+                MediaPlayer.Stop();
+            }
+
             _cameraTransform = Matrix.CreateTranslation(-_player.Position.X + 640, 0, 0);
         }
         else if (_mainMenu.Update() == 0) _currentState = GameState.Playing;
@@ -117,7 +122,6 @@ public class Game1 : Game
             float bw = _blockTexture.Width * GlobalScale;
             float bh = _blockTexture.Height * GlobalScale;
             
-          
             for (float x = _player.Position.X - 1500; x < _player.Position.X + 2500; x += bw)
             {
                 for (int row = 0; row < 5; row++)
@@ -136,6 +140,13 @@ public class Game1 : Game
 
             _spriteBatch.Begin();
             _spriteBatch.DrawString(_font, $"Score: {_score}", new Vector2(20, 20), Color.White);
+            
+            // WIN YAZISI
+            if (_hasWon)
+            {
+                _spriteBatch.DrawString(_font, "WIN!", new Vector2(550, 300), Color.Gold);
+            }
+
             _spriteBatch.End();
         }
         else
