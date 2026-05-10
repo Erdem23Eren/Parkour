@@ -97,3 +97,4 @@ c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\Audio\kilic.ogg
 c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\Audio\kilic.xnb
 c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\Audio\zipla.ogg
 c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\Audio\zipla.xnb
+c:\Users\erdem\Desktop\Parkour\1\bin\Debug\net9.0\Content\plat.xnb

@@ -1,3 +1,2 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"c:/Users/erdem/Desktop/Parkour/1/Content/Audio/kilic.mp3","c:/Users/erdem/Desktop/Parkour/1/Content/bin/DesktopGL/Audio/kilic.xnb","SoundEffectProcessor","SoundEffectContent",86643,364137,0,1542737
-"c:/Users/erdem/Desktop/Parkour/1/Content/Audio/zipla.mp3","c:/Users/erdem/Desktop/Parkour/1/Content/bin/DesktopGL/Audio/zipla.xnb","SoundEffectProcessor","SoundEffectContent",69888,419433,0,0996732
+"c:/Users/erdem/Desktop/Parkour/1/Content/plat.png","c:/Users/erdem/Desktop/Parkour/1/Content/bin/DesktopGL/plat.xnb","TextureProcessor","Texture2DContent",302,1109,0,0949168

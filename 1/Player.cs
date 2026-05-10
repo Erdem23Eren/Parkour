@@ -24,6 +24,7 @@ public class Player
     private bool _isMoving;
 
     public Vector2 Position => _position;
+    public Vector2 Velocity => _velocity; 
 
     public Player(Texture2D idle, List<Texture2D> walk, List<Texture2D> jump, List<Texture2D> attack, SoundEffect jumpSnd, SoundEffect attackSnd, Vector2 startPos)
     {
@@ -59,16 +60,17 @@ public class Player
 
             if (kState.IsKeyDown(Keys.W) && !_isJumping) 
             { 
-                _velocity.Y = -12f; 
+                _velocity.Y = -14f; 
                 _isJumping = true; 
                 _currentFrameIndex = 0;
                 _jumpSound.Play();
             }
         }
 
-        _velocity.Y += 0.5f;
+        _velocity.Y += 0.55f; 
         _position += _velocity;
 
+       
         if (_position.Y >= groundY)
         {
             _position.Y = groundY;
@@ -107,6 +109,7 @@ public class Player
         else if (_isMoving) textureToDraw = _walkTextures[_currentFrameIndex];
         else textureToDraw = _idleTexture;
 
+       
         Vector2 origin = new Vector2(textureToDraw.Width / 2f, textureToDraw.Height);
         SpriteEffects flip = _velocity.X < 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
         spriteBatch.Draw(textureToDraw, _position, null, Color.White, 0f, origin, _characterScale, flip, 0f);

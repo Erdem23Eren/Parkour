@@ -48,6 +48,7 @@
     <File>c:/Users/erdem/Desktop/Parkour/1/Content/images/character_sheet74.png</File>
     <File>c:/Users/erdem/Desktop/Parkour/1/Content/images/character_sheet75.png</File>
     <File>c:/Users/erdem/Desktop/Parkour/1/Content/images/logo.png</File>
+    <File>c:/Users/erdem/Desktop/Parkour/1/Content/plat.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
@@ -93,6 +94,7 @@
     <File>images/73.png</File>
     <File>images/74.png</File>
     <File>images/75.png</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>
