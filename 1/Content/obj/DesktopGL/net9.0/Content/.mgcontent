@@ -10,6 +10,7 @@
     <File>c:/Users/erdem/Desktop/Parkour/1/Content/fonts/04B_30.spritefont</File>
     <File>c:/Users/erdem/Desktop/Parkour/1/Content/images/asiri basit karakter.png</File>
     <File>c:/Users/erdem/Desktop/Parkour/1/Content/images/Blok.png</File>
+    <File>c:/Users/erdem/Desktop/Parkour/1/Content/images/Cactus.png</File>
     <File>c:/Users/erdem/Desktop/Parkour/1/Content/images/character_sheet1.png</File>
     <File>c:/Users/erdem/Desktop/Parkour/1/Content/images/character_sheet10.png</File>
     <File>c:/Users/erdem/Desktop/Parkour/1/Content/images/character_sheet104.png</File>
@@ -51,6 +52,7 @@
     <File>c:/Users/erdem/Desktop/Parkour/1/Content/plat.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

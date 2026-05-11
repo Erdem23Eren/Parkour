@@ -8,110 +8,149 @@ namespace _1;
 
 public class Player
 {
-    private List<Texture2D> _walkTextures;
-    private List<Texture2D> _jumpTextures;
-    private List<Texture2D> _attackTextures;
-    private SoundEffect _jumpSound;
-    private SoundEffect _attackSound;
-    private Texture2D _idleTexture;
-    private Vector2 _position;
-    private Vector2 _velocity;
-    private bool _isJumping;
-    private bool _isAttacking;
-    private int _currentFrameIndex;
-    private double _timer;
-    private float _characterScale = 4.0f;
-    private bool _isMoving;
+    private List<Texture2D> walk_anim;
+    private List<Texture2D> jump_anim;
+private List<Texture2D> atk_anim;
+private SoundEffect sound_j, sound_a;
+private Texture2D idle_p;
+    private Vector2 p_pos;
+    private Vector2 p_vel;
+private bool is_air;
+    private bool is_atk;
+ private int cur_f;
+    private double 
+    t_val;
+    private float my_size =
+     4.0f;
+    private bool is_run;
 
-    public Vector2 Position => _position;
-    public Vector2 Velocity => _velocity; 
+    public Vector2 Position => p_pos;
+    public Vector2 Velocity => p_vel; 
 
-    public Player(Texture2D idle, List<Texture2D> walk, List<Texture2D> jump, List<Texture2D> attack, SoundEffect jumpSnd, SoundEffect attackSnd, Vector2 startPos)
+    public Player(Texture2D s0, 
+    List<Texture2D> s1, 
+    List<Texture2D> s2, 
+    List<Texture2D> s3, SoundEffect s_j, 
+    SoundEffect s_a, Vector2 start)
     {
-        _idleTexture = idle;
-        _walkTextures = walk;
-        _jumpTextures = jump;
-        _attackTextures = attack;
-        _jumpSound = jumpSnd;
-        _attackSound = attackSnd;
-        _position = startPos;
+        idle_p = s0;
+     walk_anim = s1;
+        jump_anim = s2;
+       
+        atk_anim = s3;
+        sound_j = s_j;
+        
+        sound_a = s_a;
+        p_pos = start;
     }
-
-    public void Update(GameTime gameTime, float groundY)
+ 
+    public void Update(GameTime gt, float floor_y)
     {
-        var kState = Keyboard.GetState();
-        var mState = Mouse.GetState();
-        bool wasJumping = _isJumping;
-        _isMoving = false;
+        var keys = Keyboard.GetState();
+       
+        var ms = Mouse.GetState();
+        bool prev_air = is_air;
+        is_run = false;
 
-        if (mState.LeftButton == ButtonState.Pressed && !_isAttacking)
+        if (ms.LeftButton == ButtonState.Pressed && !is_atk)
         {
-            _isAttacking = true;
-            _currentFrameIndex = 0;
-            _timer = 0;
-            _attackSound.Play();
+            is_atk = true;
+            cur_f = 0;
+            t_val = 0;
+            sound_a.Play();
         }
 
-        if (!_isAttacking)
+        if (!is_atk)
         {
-            if (kState.IsKeyDown(Keys.D)) { _velocity.X = 5f; _isMoving = true; }
-            else if (kState.IsKeyDown(Keys.A)) { _velocity.X = -5f; _isMoving = true; }
-            else { _velocity.X = 0; }
-
-            if (kState.IsKeyDown(Keys.W) && !_isJumping) 
+            if (keys.IsKeyDown(Keys.D)) 
             { 
-                _velocity.Y = -20f; 
-                _isJumping = true; 
-                _currentFrameIndex = 0;
-                _jumpSound.Play();
+                p_vel.X = 5.15f; 
+                is_run = true; 
+            }
+            else if (keys.IsKeyDown(Keys.A)) 
+            { 
+                p_vel.X = -5.15f; 
+                is_run = true; 
+            }
+            else 
+            { 
+                p_vel.X = 0; 
+            }
+
+            if (keys.IsKeyDown(Keys.W) && !is_air) 
+            { 
+                p_vel.Y = -19.3f; 
+                is_air = true; 
+                cur_f = 0;
+                sound_j.Play();
             }
         }
 
-        _velocity.Y += 0.55f; 
-        _position += _velocity;
+        p_vel.Y += 0.61f; 
+        p_pos += p_vel;
 
-       
-        if (_position.Y >= groundY)
+        if (p_pos.Y >= floor_y)
         {
-            _position.Y = groundY;
-            _velocity.Y = 0;
-            _isJumping = false;
+            p_pos.Y = floor_y;
+            p_vel.Y = 0;
+            is_air = false;
         }
 
-        if (wasJumping != _isJumping && !_isAttacking) _currentFrameIndex = 0;
+        if (prev_air != is_air && !is_atk) 
+            cur_f = 0;
 
-        _timer += gameTime.ElapsedGameTime.TotalSeconds;
-        if (_timer > 0.1)
+        t_val +=
+         gt.ElapsedGameTime.TotalSeconds;
+
+        if (t_val > 0.088)
         {
-            _currentFrameIndex++;
-            _timer = 0;
-            if (_isAttacking)
+            cur_f++;
+            t_val = 0;
+
+            if (is_atk)
             {
-                if (_currentFrameIndex >= _attackTextures.Count) { _isAttacking = false; _currentFrameIndex = 0; }
+                if (cur_f >= 
+                atk_anim.Count) 
+                { 
+                    is_atk = false; 
+                    cur_f = 0; 
+                }
             }
-            else if (_isJumping)
+            else if (is_air)
             {
-                if (_currentFrameIndex >= _jumpTextures.Count) _currentFrameIndex = 0;
+                if (cur_f >= 
+                jump_anim.Count)
+                 cur_f = 0;
             }
-            else if (_isMoving)
+            else if (is_run)
             {
-                if (_currentFrameIndex >= _walkTextures.Count) _currentFrameIndex = 0;
+                if (cur_f >=
+                 walk_anim.Count) 
+                cur_f = 0;
             }
-            else _currentFrameIndex = 0;
+            else 
+            {
+                cur_f = 0;
+            }
         }
     }
-
-    public void Draw(SpriteBatch spriteBatch)
+    #region DRAW
+    public void Draw(SpriteBatch batch)
     {
-        Texture2D textureToDraw;
-        if (_isAttacking) textureToDraw = _attackTextures[_currentFrameIndex];
-        else if (_isJumping) textureToDraw = _jumpTextures[_currentFrameIndex];
-        else if (_isMoving) textureToDraw = _walkTextures[_currentFrameIndex];
-        else textureToDraw = _idleTexture;
+        Texture2D sprite;
 
-       
-        Vector2 origin = new Vector2(textureToDraw.Width / 2f, textureToDraw.Height);
-        SpriteEffects flip = _velocity.X < 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-        spriteBatch.Draw(textureToDraw, _position, null, Color.White, 0f, origin, _characterScale, flip, 0f);
+        if (is_atk) sprite = atk_anim[cur_f];
+        else if (is_air) sprite = jump_anim[cur_f];
+        else if (is_run) sprite = walk_anim[cur_f];
+        else sprite = idle_p;
+
+        Vector2 pivot = new Vector2(sprite.Width / 2f, sprite.Height);
+        SpriteEffects fx = p_vel.X < 0 ? SpriteEffects.
+        FlipHorizontally :  SpriteEffects.None;
+        
+        batch.Draw
+        (sprite, p_pos, null, Color.White, 0f, pivot, my_size, 
+        fx, 0f);
     }
+    #endregion
 }

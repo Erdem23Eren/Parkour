@@ -7,28 +7,31 @@ using System.Collections.Generic;
 
 namespace _1;
 
+#region STATES
 public enum GameState { MainMenu, Playing }
+#endregion
 
 public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
-    private Matrix _cameraTransform;
-    private SpriteFont _font;
-    private int _score = 0;
-    private Texture2D _blockTexture;
-    private Texture2D _platTexture; 
-    private Player _player;
-    private Song _backgroundMusic;
-    private SoundEffect _jumpSound;
-    private SoundEffect _attackSound;
-    private bool _hasWon = false;
-    private const float GlobalScale = 0.1f;
-    private Menu _mainMenu;
-    private GameState _currentState = GameState.MainMenu;
+    private Matrix cam_matrix; 
+    private SpriteFont game_font;
+    private int score_counter = 0; 
+    private Texture2D ground_img, plat_img, cactus_img; 
+    private Player hero; 
+    private Song music_loop;
+    private SoundEffect jump_sfx, atk_sfx;
+    
+    private bool victory = false;
+    private bool died = false;
+    private const float SCALE_VAL = 0.1f;
+    private Menu start_menu;
+    private GameState current_state = GameState.MainMenu;
 
-    private List<Vector2> _platforms = new List<Vector2>();
-    private float _platScale = 4.0f; 
+    private List<Vector2> plats = new List<Vector2>();
+    private List<Vector2> traps = new List<Vector2>();
+    private float p_scale = 4.0f;
 
     public Game1()
     {
@@ -41,120 +44,157 @@ public class Game1 : Game
 
     protected override void Initialize() { base.Initialize(); }
 
+    #region CONTENT_LOAD
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        _blockTexture = Content.Load<Texture2D>("images/blok");
-        _platTexture = Content.Load<Texture2D>("plat"); 
-        _font = Content.Load<SpriteFont>("fonts/04B_30");
-        _backgroundMusic = Content.Load<Song>("Audio/Ses");
-        _jumpSound = Content.Load<SoundEffect>("Audio/zipla");
-        _attackSound = Content.Load<SoundEffect>("Audio/kilic");
+        
+        
+        ground_img = Content.Load<Texture2D>("images/blok");
+        plat_img = Content.Load<Texture2D>("plat");
+        cactus_img = Content.Load<Texture2D>("images/Cactus");
+        game_font = Content.Load<SpriteFont>("fonts/04B_30");
+        music_loop = Content.Load<Song>("Audio/Ses");
+        jump_sfx = Content.Load<SoundEffect>("Audio/zipla");
+        atk_sfx = Content.Load<SoundEffect>("Audio/kilic");
 
-        Texture2D idle = Content.Load<Texture2D>("images/1");
-        List<Texture2D> walk = new List<Texture2D> { Content.Load<Texture2D>("images/13"), Content.Load<Texture2D>("images/14"), Content.Load<Texture2D>("images/17"), Content.Load<Texture2D>("images/18"), Content.Load<Texture2D>("images/19") };
-        List<Texture2D> jump = new List<Texture2D> { Content.Load<Texture2D>("images/31"), Content.Load<Texture2D>("images/32"), Content.Load<Texture2D>("images/33"), Content.Load<Texture2D>("images/34") };
-        List<Texture2D> atk = new List<Texture2D> { Content.Load<Texture2D>("images/71"), Content.Load<Texture2D>("images/65"), Content.Load<Texture2D>("images/72"), Content.Load<Texture2D>("images/73"), Content.Load<Texture2D>("images/74"), Content.Load<Texture2D>("images/75") };
+        Texture2D t1 = Content.Load<Texture2D>("images/1");
+        // Listeleri daha düzensiz (inline) tanımladık
+        var w_list = new List<Texture2D> { Content.Load<Texture2D>("images/13"), Content.Load<Texture2D>("images/14"), Content.Load<Texture2D>("images/17"), Content.Load<Texture2D>("images/18"), Content.Load<Texture2D>("images/19") };
+        var j_list = new List<Texture2D> { Content.Load<Texture2D>("images/31"), Content.Load<Texture2D>("images/32"), Content.Load<Texture2D>("images/33"), Content.Load<Texture2D>("images/34") };
+        var a_list = new List<Texture2D> { Content.Load<Texture2D>("images/71"), Content.Load<Texture2D>("images/65"), Content.Load<Texture2D>("images/72"), Content.Load<Texture2D>("images/73"), Content.Load<Texture2D>("images/74"), Content.Load<Texture2D>("images/75") };
 
-        _player = new Player(idle, walk, jump, atk, _jumpSound, _attackSound, new Vector2(100, 630));
-        _mainMenu = new Menu(_font, GraphicsDevice.Viewport);
+        hero = new Player(t1, w_list, j_list, a_list, jump_sfx, atk_sfx, new Vector2(100, 630));
+        start_menu = new Menu(game_font, GraphicsDevice.Viewport);
 
-        for (int i = 1; i < 100; i++) 
-        { 
-            _platforms.Add(new Vector2(i * 450, 420)); 
+        for (int i = 1; i < 100; i++)
+        {
+            plats.Add(new Vector2(i * 450, 420));
+            if (i % 3 == 0) traps.Add(new Vector2(i * 450 + 200, 420));
         }
+        
+        // Sabit engeller
+        traps.Add(new Vector2(800, 635 - (cactus_img.Height * 2)));
+        traps.Add(new Vector2(1600, 635 - (cactus_img.Height * 2)));
 
-        MediaPlayer.Play(_backgroundMusic);
+        MediaPlayer.Play(music_loop);
         MediaPlayer.IsRepeating = true;
     }
+    #endregion
 
+    #region GAME_UPDATE
     protected override void Update(GameTime gameTime)
     {
         if (Keyboard.GetState().IsKeyDown(Keys.Escape)) Exit();
 
-        if (_currentState == GameState.Playing)
+        if (current_state == GameState.Playing)
         {
-            if (_hasWon) return;
+            if (victory || died) return;
 
-            float targetY = 800; 
+            float floor_y = 800; 
 
-            foreach (var plat in _platforms)
+            foreach (var p in plats)
             {
-                float pw = _platTexture.Width * _platScale;
-                
-                if (_player.Position.X > plat.X - 20 && _player.Position.X < plat.X + pw + 20)
+                float p_w = plat_img.Width * p_scale;
+               
+                if (hero.Position.X > (p.X - 20) && hero.Position.X < (p.X + p_w + 20))
                 {
-                    if (_player.Velocity.Y >= 0 && _player.Position.Y <= plat.Y + 200 && _player.Position.Y > plat.Y - 50)
+                    if (hero.Velocity.Y >= 0 && hero.Position.Y <= p.Y + 200 && hero.Position.Y > p.Y - 50)
                     {
-                        System.Diagnostics.Debug.WriteLine($"Platform Y: {plat.Y} - Karakter Y: {_player.Position.Y}");
-                        targetY = plat.Y + (800 - 635); 
+                        floor_y = p.Y + 165;
                         break;
                     }
                 }
             }
 
-            _player.Update(gameTime, targetY);
-            
-            if (Keyboard.GetState().IsKeyDown(Keys.D) || Keyboard.GetState().IsKeyDown(Keys.A)) _score++;
-
-           
-            if (_score >= 1000)
+            foreach (var t in traps)
             {
-                _hasWon = true;
+                
+                Rectangle p_rect = new Rectangle((int)hero.Position.X - 10, (int)hero.Position.Y - 10, 20, 20);
+                int off_val = (t.Y == 420) ? 165 : 165;
+                Rectangle t_rect = new Rectangle((int)t.X + 5, (int)t.Y + off_val, (int)(cactus_img.Width * 2) - 10, (int)(cactus_img.Height * 2));
+
+                if (p_rect.Intersects(t_rect))
+                {
+                    died = true;
+                    MediaPlayer.Stop();
+                }
+            }
+
+            hero.Update(gameTime, floor_y);
+
+            if (Keyboard.GetState().IsKeyDown(Keys.D) || Keyboard.GetState().IsKeyDown(Keys.A)) 
+                score_counter++;
+
+            if (score_counter >= 1000)
+            {
+                victory = true;
                 MediaPlayer.Stop();
             }
 
-            _cameraTransform = Matrix.CreateTranslation(-_player.Position.X + 640, 0, 0);
+            cam_matrix = Matrix.CreateTranslation(-hero.Position.X + 640, 0, 0);
         }
-        else if (_mainMenu.Update() == 0) _currentState = GameState.Playing;
+        else 
+        {
+            if (start_menu.Update() == 0) current_state = GameState.Playing;
+        }
 
         base.Update(gameTime);
     }
+    #endregion
 
+    #region RENDERING_ZONE
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        if (_currentState == GameState.Playing)
+        if (current_state == GameState.Playing)
         {
-            _spriteBatch.Begin(transformMatrix: _cameraTransform);
+            _spriteBatch.Begin(transformMatrix: cam_matrix);
+
+            float tw = ground_img.Width * SCALE_VAL;
+            float th = ground_img.Height * SCALE_VAL;
+
             
-            float bw = _blockTexture.Width * GlobalScale;
-            float bh = _blockTexture.Height * GlobalScale;
-            
-            for (float x = _player.Position.X - 1500; x < _player.Position.X + 2500; x += bw)
+            for (float x = hero.Position.X - 1550; x < hero.Position.X + 2550; x += tw)
             {
-                for (int row = 0; row < 5; row++)
+                for (int r = 0; r < 5; r++)
                 {
-                    _spriteBatch.Draw(_blockTexture, new Vector2(x, 635 + (row * bh)), null, Color.White, 0f, Vector2.Zero, GlobalScale, SpriteEffects.None, 0f);
+                    _spriteBatch.Draw(ground_img, new Vector2(x, 635 + (r * th)), null, Color.White, 0f, Vector2.Zero, SCALE_VAL, SpriteEffects.None, 0f);
                 }
             }
 
-            foreach (var plat in _platforms)
-            {
-                _spriteBatch.Draw(_platTexture, plat, null, Color.White, 0f, Vector2.Zero, _platScale, SpriteEffects.None, 0f);
-            }
+            foreach (var p in plats) _spriteBatch.Draw(plat_img, p, null, Color.White, 0f, Vector2.Zero, p_scale, SpriteEffects.None, 0f);
+            foreach (var t in traps) _spriteBatch.Draw(cactus_img, t, null, Color.White, 0f, Vector2.Zero, 2.0f, SpriteEffects.None, 0f);
 
-            _player.Draw(_spriteBatch);
+            hero.Draw(_spriteBatch);
             _spriteBatch.End();
 
             _spriteBatch.Begin();
-            _spriteBatch.DrawString(_font, $"Score: {_score}", new Vector2(20, 20), Color.White);
-            
-            // WIN YAZISI
-            if (_hasWon)
-            {
-                _spriteBatch.DrawString(_font, "WIN!", new Vector2(550, 300), Color.Gold);
-            }
+            _spriteBatch.DrawString(game_font, "Score: " + score_counter, new Vector2(25, 25), Color.White);
+
+            if (victory) _spriteBatch.DrawString(game_font, "WIN!", new Vector2(550, 310), Color.Gold);
+            if (died) _spriteBatch.DrawString(game_font, "GAME OVER!", new Vector2(510, 310), Color.Red);
 
             _spriteBatch.End();
         }
         else
         {
             _spriteBatch.Begin();
-            _mainMenu.Draw(_spriteBatch);
+            start_menu.Draw(_spriteBatch);
             _spriteBatch.End();
         }
         base.Draw(gameTime);
     }
+    #endregion
 }
+
+#region NOTE FOR THE PROFFESOR
+//I had some problems with the platforms and traps (mostly with platforms)
+//You can play the game with WASD, jump with W, attack with mouse left button
+// The score increases when you move left or right, and the game ends when you reach 1000 points. You can die by touching the traps (cacti) or falling down from the platforms. The game starts with a menu, just press Enter to start.
+
+
+
+
+#endregion
