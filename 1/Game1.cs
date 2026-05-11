@@ -59,7 +59,7 @@ public class Game1 : Game
         atk_sfx = Content.Load<SoundEffect>("Audio/kilic");
 
         Texture2D t1 = Content.Load<Texture2D>("images/1");
-        // Listeleri daha düzensiz (inline) tanımladık
+       
         var w_list = new List<Texture2D> { Content.Load<Texture2D>("images/13"), Content.Load<Texture2D>("images/14"), Content.Load<Texture2D>("images/17"), Content.Load<Texture2D>("images/18"), Content.Load<Texture2D>("images/19") };
         var j_list = new List<Texture2D> { Content.Load<Texture2D>("images/31"), Content.Load<Texture2D>("images/32"), Content.Load<Texture2D>("images/33"), Content.Load<Texture2D>("images/34") };
         var a_list = new List<Texture2D> { Content.Load<Texture2D>("images/71"), Content.Load<Texture2D>("images/65"), Content.Load<Texture2D>("images/72"), Content.Load<Texture2D>("images/73"), Content.Load<Texture2D>("images/74"), Content.Load<Texture2D>("images/75") };
@@ -102,6 +102,7 @@ public class Game1 : Game
                     if (hero.Velocity.Y >= 0 && hero.Position.Y <= p.Y + 200 && hero.Position.Y > p.Y - 50)
                     {
                         floor_y = p.Y + 165;
+
                         break;
                     }
                 }
@@ -160,21 +161,27 @@ public class Game1 : Game
             {
                 for (int r = 0; r < 5; r++)
                 {
-                    _spriteBatch.Draw(ground_img, new Vector2(x, 635 + (r * th)), null, Color.White, 0f, Vector2.Zero, SCALE_VAL, SpriteEffects.None, 0f);
+                    _spriteBatch.Draw(ground_img, new Vector2(x, 635 + (r * th)), 
+                    null, Color.White, 0f, Vector2.Zero, SCALE_VAL, SpriteEffects.None, 0f);
                 }
             }
 
-            foreach (var p in plats) _spriteBatch.Draw(plat_img, p, null, Color.White, 0f, Vector2.Zero, p_scale, SpriteEffects.None, 0f);
-            foreach (var t in traps) _spriteBatch.Draw(cactus_img, t, null, Color.White, 0f, Vector2.Zero, 2.0f, SpriteEffects.None, 0f);
+            foreach (var p in plats) _spriteBatch.Draw(plat_img, p, null, Color.White,
+             0f, Vector2.Zero, p_scale, SpriteEffects.None, 0f);
+            foreach (var t in traps) _spriteBatch.Draw(cactus_img, t, null, Color.White, 
+            0f, Vector2.Zero, 2.0f, SpriteEffects.None, 0f);
 
             hero.Draw(_spriteBatch);
             _spriteBatch.End();
 
             _spriteBatch.Begin();
-            _spriteBatch.DrawString(game_font, "Score: " + score_counter, new Vector2(25, 25), Color.White);
+            _spriteBatch.DrawString(game_font, "Score: " + 
+            score_counter, new Vector2(25, 25), Color.White);
 
-            if (victory) _spriteBatch.DrawString(game_font, "WIN!", new Vector2(550, 310), Color.Gold);
-            if (died) _spriteBatch.DrawString(game_font, "GAME OVER!", new Vector2(510, 310), Color.Red);
+            if (victory) _spriteBatch.DrawString(game_font, "WIN!",
+             new Vector2(550, 310), Color.Gold);
+            if (died) _spriteBatch.DrawString(game_font, "GAME OVER!",
+             new Vector2(510, 310), Color.Red);
 
             _spriteBatch.End();
         }
