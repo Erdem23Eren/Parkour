@@ -60,20 +60,29 @@ public class Game1 : Game
 
         Texture2D t1 = Content.Load<Texture2D>("images/1");
        
-        var w_list = new List<Texture2D> { Content.Load<Texture2D>("images/13"), Content.Load<Texture2D>("images/14"), Content.Load<Texture2D>("images/17"), Content.Load<Texture2D>("images/18"), Content.Load<Texture2D>("images/19") };
-        var j_list = new List<Texture2D> { Content.Load<Texture2D>("images/31"), Content.Load<Texture2D>("images/32"), Content.Load<Texture2D>("images/33"), Content.Load<Texture2D>("images/34") };
-        var a_list = new List<Texture2D> { Content.Load<Texture2D>("images/71"), Content.Load<Texture2D>("images/65"), Content.Load<Texture2D>("images/72"), Content.Load<Texture2D>("images/73"), Content.Load<Texture2D>("images/74"), Content.Load<Texture2D>("images/75") };
+        var w_list = new List<Texture2D> { Content.Load<Texture2D>("images/13"),
+                    Content.Load<Texture2D> ("images/14"), Content.Load<Texture2D>("images/17"), 
+         Content.Load<Texture2D>("images/18"), Content.Load<Texture2D>("images/19") };
+        var j_list = new List<Texture2D> { Content.Load<Texture2D>("images/31"), 
+        Content.Load<Texture2D>("images/32"), Content.Load<Texture2D>("images/33"),
+         Content.Load<Texture2D>("images/34") };
+        var a_list = new List<Texture2D> { Content.Load<Texture2D>("images/71"), 
+        Content.Load<Texture2D>("images/65"),       Content.Load<Texture2D>("images/72"), 
+        Content.Load<Texture2D>("images/73"),   Content.Load<Texture2D>("images/74"),
+             Content.Load<Texture2D>("images/75") };
 
-        hero = new Player(t1, w_list, j_list, a_list, jump_sfx, atk_sfx, new Vector2(100, 630));
+        hero = new Player(t1, w_list, j_list, a_list, jump_sfx, atk_sfx, 
+        new Vector2(100, 630));
         start_menu = new Menu(game_font, GraphicsDevice.Viewport);
 
-        for (int i = 1; i < 100; i++)
+        for (int i = 1; i 
+        < 100; i++)
         {
             plats.Add(new Vector2(i * 450, 420));
             if (i % 3 == 0) traps.Add(new Vector2(i * 450 + 200, 420));
         }
         
-        // Sabit engeller
+       
         traps.Add(new Vector2(800, 635 - (cactus_img.Height * 2)));
         traps.Add(new Vector2(1600, 635 - (cactus_img.Height * 2)));
 
@@ -144,6 +153,20 @@ public class Game1 : Game
     }
     #endregion
 
+
+    #region  Ali için not(unutursan bak)
+
+    //Draw kısmı burada Rendering zone olarak ayırdım. Update kısmı gameupdate olarak ayırdım.
+    //oyunun kontrolleri zaten wasd ve mouse sol tık 
+    //Menu de başlamak için enter bas , w ve s tuşuyla menüde hareket edebilirsin.
+    //iyi oyunlar :)
+    //kendim için de açıklama satırı açıyorum. Menu.cs içine oradan yazabilirsin.
+
+    #endregion
+
+
+
+
     #region RENDERING_ZONE
     protected override void Draw(GameTime gameTime)
     {
@@ -199,9 +222,13 @@ public class Game1 : Game
 #region NOTE FOR THE PROFFESOR
 //I had some problems with the platforms and traps (mostly with platforms)
 //You can play the game with WASD, jump with W, attack with mouse left button
-// The score increases when you move left or right, and the game ends when you reach 1000 points. You can die by touching the traps (cacti) or falling down from the platforms. The game starts with a menu, just press Enter to start.
+// The score increases when you move left or right, and the game ends when you reach 1000 points.
+// You can die by touching the traps (cacti) or falling down from the platforms. The game starts with a menu, 
+//just press Enter to start.
+// The game and player file is so big and untidy because I had to make a lot of adjustments and 
+//changes to the player and game mechanics, 
+//so I didn't have time to refactor the code and make it cleaner. I hope you understand.
 
-
-
+//When we reach the score 1000 we win
 
 #endregion

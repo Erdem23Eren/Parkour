@@ -59,6 +59,7 @@ private bool is_air;
             t_val = 0;
             sound_a.Play();
         }
+        
 
         if (!is_atk)
         {
