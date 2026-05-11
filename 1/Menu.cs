@@ -45,9 +45,9 @@ public class Menu
         < _options.Length; i++)
         {
             Color color = (i == _selectedIndex) ? Color.Yellow :
-             Color.White;
+                Color.White;
             Vector2 size = _font.MeasureString(_options[i]);
-            Vector2 position = new Vector2(_screenCenter.X - (size.X / 2f),
+                Vector2 position = new Vector2(_screenCenter.X - (size.X / 2f),
              _screenCenter.Y - 50 + (i * 60));
             
             spriteBatch.DrawString(_font, _options[i], 
